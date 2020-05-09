@@ -1,32 +1,32 @@
-# deno_install
+# Deno install
 
-**One-line commands to install Deno on your system.**
+**Krátké příkazy k instalaci deno.**
 
 [![Build Status](https://github.com/denoland/deno_install/workflows/ci/badge.svg?branch=master)](https://github.com/denoland/deno_install/actions)
 
-## Install Latest Version
+## Instalace nejnovější verze
 
-**With Shell:**
+**Pomocí Shell (linux a Mac OS):**
 
 ```sh
 curl -fsSL https://deno.land/x/install/install.sh | sh
 ```
 
-**With PowerShell:**
+**Pomocí PowerShell (Windows):**
 
 ```powershell
 iwr https://deno.land/x/install/install.ps1 -useb | iex
 ```
 
-## Install Specific Version
+## Instalace vybrané verze
 
-**With Shell:**
+**Pomocí Shell (linux a Mac OS):**
 
 ```sh
 curl -fsSL https://deno.land/x/install/install.sh | sh -s v0.38.0
 ```
 
-**With PowerShell:**
+**Pomocí PowerShell (Windows):**
 
 ```powershell
 iwr https://deno.land/x/install/install.ps1 -useb -outf install.ps1; .\install.ps1 v0.38.0
@@ -34,80 +34,80 @@ iwr https://deno.land/x/install/install.ps1 -useb -outf install.ps1; .\install.p
 
 ## Install via Package Manager
 
-**With [Scoop](https://scoop.sh):**
+**Pomocí [Scoop](https://scoop.sh):**
 
 ```powershell
 scoop install deno
 ```
 
-**With [Homebrew](https://formulae.brew.sh/formula/deno):**
+**Pomocí [Homebrew](https://formulae.brew.sh/formula/deno):**
 
 ```sh
 brew install deno
 ```
 
-**With [Chocolatey](https://chocolatey.org/packages/deno):**
+**Pomocí [Chocolatey](https://chocolatey.org/packages/deno):**
 
 ```powershell
 choco install deno
 ```
 
-## Install and Manage Multiple Versions
+## Instalace a spravování více verzí
 
-**With [asdf](https://asdf-vm.com) and [asdf-deno](https://github.com/asdf-community/asdf-deno):**
+**Pomocí [asdf](https://asdf-vm.com) a [asdf-deno](https://github.com/asdf-community/asdf-deno):**
 
 ```sh
 asdf plugin-add deno https://github.com/asdf-community/asdf-deno.git
 
 asdf install deno 0.38.0
 
-# Activate globally with:
+# Aktivujte globálně pomocí:
 asdf global deno 0.38.0
 
-# Activate locally in the current folder with:
+# Aktivujte lokálně do vybrané složky pomocí:
 asdf local deno 0.38.0
 ```
 
-**With [Scoop](https://github.com/lukesampson/scoop/wiki/Switching-Ruby-And-Python-Versions):**
+**Pomocí [Scoop](https://github.com/lukesampson/scoop/wiki/Switching-Ruby-And-Python-Versions):**
 
 ```sh
-# Install a specific version of deno:
+# Nainstalujte vybranou verzi
 scoop install deno@0.22.0
 
-# Switch to v0.22.0
+# Přepněte na v0.22.0
 scoop reset deno@0.22.0
 
-# Switch to the latest version
+# Přepněte na nejnovější verzi
 scoop reset deno
 ```
 
-## Environment Variables
+## Proměnné prostředí (Environment Variables)
 
-- `DENO_INSTALL` - The directory in which to install Deno. This defaults to
-  `$HOME/.deno`. The executable is placed in `$DENO_INSTALL/bin`. One
-  application of this is a system-wide installation:
+- `DENO_INSTALL` - Složka do které se má DENO nainstalovat
+  `$HOME/.deno`. Spustitelný soubor se uloží do `$DENO_INSTALL/bin`. 
+  Jedna možnost jak toto využít:
 
-  **With Shell (`/usr/local`):**
+  **Pomocí Shell (`/usr/local`):**
 
   ```sh
   curl -fsSL https://deno.land/x/install/install.sh | sudo DENO_INSTALL=/usr/local sh
   ```
 
-  **With PowerShell (`C:\Program Files\deno`):**
+  **Pomocí PowerShell (`C:\Program Files\deno`):**
 
   ```powershell
-  # Run as administrator:
+  # Spusťte jako administrátor
   $env:DENO_INSTALL = "C:\Program Files\deno"
   iwr https://deno.land/x/install/install.ps1 -useb | iex
   ```
 
-## Compatibility
+## Kompatibilita
 
-- The Shell installer can be used on Windows via the [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about).
+- Shell instalátor je možno použít pomocí [Windows Subsystem for Linux](https://docs.microsoft.com/en-us/windows/wsl/about).
 
-## Known Issues
+## Známé problémy
 
-### Running scripts is disabled
+### Spouštění skriptů je zakázáno
 
 ```
 PS C:\> iwr https://deno.land/x/install/install.ps1 -useb -outf install.ps1; .\install.ps1 v0.38.0
@@ -119,13 +119,15 @@ At line:1 char:71
     + FullyQualifiedErrorId : UnauthorizedAccess
 ```
 
-**When does this issue occur?**
+*(Poznámka: pokud se Vás tento problém týká napište mi český překlad. Jelikož nepoužívám windows, nemohl jsem zreplikovat. Děkuji)*
 
-If your systems' [ExecutionPolicy](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) is `Undefined` or `Restricted`.
+**Kdy se tento problém objevuje?**
 
-**How can this issue be fixed?**
+Pokud je [ExecutionPolicy](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies) ve vašem systému nastaveno na `Undefined` (Nenastavené) nebo `Restricted` (omezené).
 
-Allow scripts that are downloaded from the internet to be executed by setting the execution policy to `RemoteSigned`:
+**Jak může být tento problém opraven?**
+
+Povolte skripty z internetu nastavením ExecutionPolicy na `RemoteSigned` (vzdálené nepodepsané):
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
